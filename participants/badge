@@ -1,0 +1,37 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then 
+	echo "usage: 
+	$(basename "$0") template xactcode name"
+	exit
+fi
+if [ ! -r "$1" ]; then
+	echo "$1 not found"
+	exit 1
+fi
+src="$1"
+dest="id/${2}.png"
+name="$3"
+qr="qr/$2".png
+xactcode="$2"
+nameshort="$(./initials.py "$name")"
+
+if [ "$name" != "$nameshort" ]; then
+  echo "Shortening $name -> $nameshort"
+fi
+
+convert \
+	"$src" \
+	-gravity center \
+	-pointsize 75 \
+	-fill "#000000ff" \
+	-font "Comfortaa-Bold" \
+	-annotate +0+540 "$(./initials.py "$name")" \
+	-fill "#bda8e9" \
+	-font "Open-Sans-Bold" \
+	-pointsize 90 \
+	-annotate +0+650 "$xactcode" \
+	"$dest"
+
+magick convert "$dest" "$qr" -gravity Center -geometry 500x500+0+0 -composite "$dest"
+
