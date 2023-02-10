@@ -6,7 +6,8 @@ mkdir -p id
 echo "Making all the ID Cards"
 template="template.png"
 while IFS="" read -r line || [ -n "$line" ] ; do
-	name="$(echo "$line" | cut -f2)"
-	id="$(echo "$line" | cut -f1)"
+	name="$(echo "$line" | cut -f2 -d'	')"
+  echo $name
+	id="$(echo "$line" | cut -f1 -d'	')"
 	./badge "$template" "$id" "$name" &
 done <list
