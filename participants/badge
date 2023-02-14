@@ -23,7 +23,7 @@ fi
 convert \
 	"$src" \
 	-gravity center \
-	-pointsize 75 \
+	-pointsize 65 \
 	-fill "#000000ff" \
 	-font "Comfortaa-Bold" \
 	-annotate +0+540 "$(./initials.py "$name")" \
