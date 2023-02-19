@@ -7,7 +7,7 @@ To generate cards run `./genid` in the respective folder.
 
 The `list` file needs to have the data in TSV format.
 
-The `./genqr` script is auto-run but can also be run manually to generate the QR code for each participant (not for organizer).
+The `./genqr` script is auto-run but can also be run manually to generate the QR code for each participant.
 
 To remove preexisting images run `rm id/*.png` in the respective folder.
 
